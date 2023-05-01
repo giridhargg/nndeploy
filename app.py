@@ -3,7 +3,11 @@ import pandas as pd
 # from flask_cors import CORS
 import pickle
 
-model = pickle.load(open("./nn_model.pkl", 'rb'))
+from pathlib import Path
+THIS_FOLDER = Path(__file__).parent.resolve()
+my_file = THIS_FOLDER / "nn_model.pkl"
+
+model = pickle.load(open(my_file, 'rb'))
 
 app = Flask(__name__)
 # CORS(app)
