@@ -19,20 +19,27 @@ model.load_weights(weights_file)
 app = Flask(__name__)
 # CORS(app)
 
+print("---------------------in app.py---------------------------")
+
 @app.route('/')
 def home():
     return render_template("ui.html")
 
 @app.route('/predict', methods = ['POST'])
 def predict():
+    print("---------------------came inside predict---------------------")
     input_data = request.json['input']
     input_data = [[float(i) for i in row] for row in input_data]
-    
+    print("---------------------above model.predict---------------------")
     y_pred_val = model.predict(input_data)
+    print("---------------------below inside predict---------------------")
+    print("---------ypred-----------", y_pred_val)
     
     y_pred_val_labels = (y_pred_val >= 0.5).astype(int)
     for i in range(len(input_data)):
         input_data[i].append(int(y_pred_val_labels[i][0]))
+    
+    print("---------------------above response---------------------")
     
     return jsonify(input_data)
 
