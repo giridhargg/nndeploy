@@ -2,13 +2,19 @@ from flask import Flask, jsonify, request, url_for, redirect, render_template
 import pandas as pd
 # from flask_cors import CORS
 import pickle
+from model import get_model
 
 from pathlib import Path
 THIS_FOLDER = Path(__file__).parent.resolve()
-my_file = THIS_FOLDER / "nn_model.pkl"
-print(my_file)
+# my_file = THIS_FOLDER / "nn_model.pkl"
+# model = pickle.load(open(my_file, 'rb'))
 
-model = pickle.load(open(my_file, 'rb'))
+model = get_model()
+
+weights_file = THIS_FOLDER / "weights.h5"
+# weights = pickle.load(open(weights_file, 'rb'))
+
+model.load_weights(weights_file)
 
 app = Flask(__name__)
 # CORS(app)
