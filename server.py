@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, url_for, redirect, render_template
 import pandas as pd
 from flask_cors import CORS
 import pickle
@@ -7,6 +7,10 @@ model = pickle.load(open("nn_model.pkl", 'rb'))
 
 app = Flask(__name__)
 CORS(app)
+
+@app.route('/')
+def home():
+    return render_template("ui.html")
 
 @app.route('/predict', methods = ['POST'])
 def predict():
