@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple UI</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <style>
+      html, body {
+        display: flex;
+        justify-content: center;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 15px;
+      }
+      form {
+        border: 5px solid #f1f1f1;
+      }
+      input[type=text], input[type=password] {
+        width: 80%;
+        padding: 16px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 20px;
+      }
+      label{
+        padding: 16px;
+        margin: 8px 0;
+        display: inline-block;
+        box-sizing: border-box;
+      }
+      button {
+        background-color: #8ebf42;
+        color: white;
+        padding: 14px;
+        margin: 10px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        border-radius: 20px;
+      }
+      h1 {
+        text-align:center;
+        font-size:18;
+      }
+      button:hover {
+        opacity: 0.8;
+      }
+      .form-container {
+        text-align: left;
+        margin: 24px 50px 12px;
+      }
+      .container {
+        padding: 16px 0;
+        text-align:left;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+      }
+      .input_block {
+        display: inline-block; 
+        display: flex; 
+        flex-direction: row; 
+        align-items: center;
+        justify-content: space-around;
+      }
+      span.psw {
+        float: right;
+        padding-top: 0;
+        padding-right: 15px;
+      }
+      /* Change styles for span on extra small screens */
+      @media screen and (max-width: 300px) {
+        span.psw {
+            display: block;
+            float: none;
+        }
+    }
+    </style>
+  </head>
+  <body>
+    <form action="/action_page.php" id="form">
+      <h1>Provide feature values</h1>
+      <div class="form-container">
+        <div class="container" id="c1">
+            <div class="input_block">
+                <label><strong>F1</strong></label>
+                <input type="text" placeholder="F1" name="uname" required id="c1f1">
+            </div>
+            <div  class="input_block">
+                <label><strong>F2</strong></label>
+                <input type="text" placeholder="F2" name="uname" required id="c1f2">
+            </div>
+            <div  class="input_block">
+                <label><strong>F3</strong></label>
+                <input type="text" placeholder="F3" name="uname" required id="c1f3">
+            </div>
+            <div  class="input_block">
+                <label><strong>F4</strong></label>
+                <input type="text" placeholder="F4" name="uname" required id="c1f4">
+            </div>
+            <div  class="input_block">
+                <label><strong>F5</strong></label>
+                <input type="text" placeholder="F5" name="uname" required id="c1f5">
+            </div>
+            <div  class="input_block">
+                <label><strong>F6</strong></label>
+                <input type="text" placeholder="F6" name="uname" required id="c1f6">
+            </div>
+            <div  class="input_block">
+                <label><strong>F7</strong></label>
+                <input type="text" placeholder="F7" name="uname" required id="c1f7">
+            </div>
+            <div class="input_block" style="visibility: hidden">
+                <label for="uname"><strong>Class</strong></label>
+                <input type="text" placeholder="Y" name="uname" required id="c1y">
+            </div>
+            <div class="input_block" style="margin: 20px;">
+                <label class="remove" for="uname" style="cursor: pointer; background-color: rgb(236, 149, 149); border-radius: 50%; padding: 5px 10px;"><strong>x</strong></label>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="justify-content: center;">
+        <div class="input_block">
+            <button type="button" id="predict">Predict</button>
+        </div>
+    </div>
+    <div class="container" style="justify-content: center;">
+        <div class="input_block">
+            <label style="border-bottom: #000; cursor: pointer;" id="add_new"><strong>+ New Sample</strong></label>
+        </div>
+        <div class="input_block">
+            |
+        </div>
+        <div class="input_block">
+            <label style="border-bottom: #000; cursor: pointer;" id="random"><strong>Generate Randomly</strong></label>
+        </div>
+    </div>
+    </form>
+</body>
+  <!-- <script
+  src="https://code.jquery.com/jquery-3.6.4.js"
+  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+  crossorigin="anonymous">
+        
+    </script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            let row = 1;
+            $("#add_new").click(function(){
+                row++;
+                let con = `
+    <div class="container" id="c${row}">
+        <div class="input_block">
+            <label for="uname"><strong>F1</strong></label>
+            <input type="text" placeholder="F1" name="uname" required id="c${row}f1">
+        </div>
+        <div  class="input_block">
+            <label for="uname"><strong>F2</strong></label>
+            <input type="text" placeholder="F2" name="uname" required id="c${row}f2">
+        </div>
+        <div  class="input_block">
+            <label for="uname"><strong>F3</strong></label>
+            <input type="text" placeholder="F3" name="uname" required id="c${row}f3">
+        </div>
+        <div  class="input_block">
+            <label for="uname"><strong>F4</strong></label>
+            <input type="text" placeholder="F4" name="uname" required id="c${row}f4">
+        </div>
+        <div  class="input_block">
+            <label for="uname"><strong>F5</strong></label>
+            <input type="text" placeholder="F5" name="uname" required id="c${row}f5">
+        </div>
+        <div  class="input_block">
+            <label for="uname"><strong>F6</strong></label>
+            <input type="text" placeholder="F6" name="uname" required id="c${row}f6">
+        </div>
+        <div  class="input_block">
+            <label for="uname"><strong>F7</strong></label>
+            <input type="text" placeholder="F7" name="uname" required id="c${row}f7">
+        </div>
+        <div class="input_block" style="visibility: hidden">
+            <label for="uname"><strong>Class</strong></label>
+            <input type="text" placeholder="Y" name="uname" required id="c${row}y">
+        </div>
+        <div class="input_block" style="margin: 20px;">
+            <label class="remove" for="uname" style="cursor: pointer; background-color: rgb(236, 149, 149); border-radius: 50%; padding: 5px 10px;"><strong>x</strong></label>
+        </div>
+    </div>`
+                $('.form-container').append(con);
+            });
+            
+            $(".form-container").on("click", ".remove", function() {
+                $(this).closest(".container").remove()
+            });
+
+            $("#predict").click(function() {
+                let input = [];
+                for(i = 1; i <= row; i++) {
+                    if ($('#c' + i + 'f1').length) {
+                        let x = [];
+                        for(j = 1; j <= 7; j++) {
+                            x.push($('#c' + i + 'f' + j).val());
+                        }
+                        input.push(x);
+                    }
+                }
+                var requestOptions = {
+                    method: 'POST',
+                    headers: {"Content-Type": "application/json", "Accept": "application/json"},
+                    body: JSON.stringify({"input": input}),
+                    redirect: 'follow'
+                };
+
+                fetch("http://127.0.0.1:5000/predict", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    let c = 0;
+                    for(i = 1; i <= row; i++) {
+                        if ($('#c' + i + 'f1').length) {
+                            let y = result[c][result[c].length - 1];
+                            console.log(y);
+                            $('#c' + (i) + 'y').val(y);
+                            $('#c' + (i) + 'y').closest(".input_block").css({'visibility' : 'visible'});
+                            c++;
+                        }
+                    }
+                })
+                .catch(error => console.log('error', error));
+            });
+
+            $('#random').click(function() {
+                row++;
+                let con = `
+    <div class="container" id="c${row}">
+        <div class="input_block">
+            <label for="uname"><strong>F1</strong></label>
+            <input type="text" placeholder="F1" name="uname" required id="c${row}f1" value=${getRandomInt(-3, 3)}>
+        </div>
+        <div  class="input_block">
+            <label for="uname"><strong>F2</strong></label>
+            <input type="text" placeholder="F2" name="uname" required id="c${row}f2" value=${getRandomInt(-3, 3)}>
+        </div>
+        <div  class="input_block">
+            <label for="uname"><strong>F3</strong></label>
+            <input type="text" placeholder="F3" name="uname" required id="c${row}f3" value="${getRandomInt(-3, 3)}">
+        </div>
+        <div  class="input_block">
+            <label for="uname"><strong>F4</strong></label>
+            <input type="text" placeholder="F4" name="uname" required id="c${row}f4" value="${getRandomInt(-3, 3)}">
+        </div>
+        <div  class="input_block">
+            <label for="uname"><strong>F5</strong></label>
+            <input type="text" placeholder="F5" name="uname" required id="c${row}f5" value="${getRandomInt(-3, 3)}">
+        </div>
+        <div  class="input_block">
+            <label for="uname"><strong>F6</strong></label>
+            <input type="text" placeholder="F6" name="uname" required id="c${row}f6" value="${getRandomInt(-3, 3)}">
+        </div>
+        <div  class="input_block">
+            <label for="uname"><strong>F7</strong></label>
+            <input type="text" placeholder="F7" name="uname" required id="c${row}f7" value="${getRandomInt(-3, 3)}">
+        </div>
+        <div class="input_block" style="visibility: hidden">
+            <label for="uname"><strong>Class</strong></label>
+            <input type="text" placeholder="Y" name="uname" required id="c${row}y" value="${getRandomInt(-3, 3)}">
+        </div>
+        <div class="input_block" style="margin: 20px;">
+            <label class="remove" for="uname" style="cursor: pointer; background-color: rgb(236, 149, 149); border-radius: 50%; padding: 5px 10px;"><strong>x</strong></label>
+        </div>
+    </div>`;
+                $('.form-container').append(con);
+            });
+
+            function getRandomInt(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+        });
+    </script>
+</html>
