@@ -6,6 +6,7 @@ import pickle
 from pathlib import Path
 THIS_FOLDER = Path(__file__).parent.resolve()
 my_file = THIS_FOLDER / "nn_model.pkl"
+print(my_file)
 
 model = pickle.load(open(my_file, 'rb'))
 
