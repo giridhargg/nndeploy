@@ -1,8 +1,2 @@
 Flask
-pandas
-numpy
 keras
-tensorflow
-sklearn
-flask_cors
-requests
