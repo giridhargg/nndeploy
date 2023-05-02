@@ -1,1 +1,1 @@
-web: gunicorn nndeploy.app:app --preload
+web: uwsgi uwsgi.ini
