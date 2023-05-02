@@ -11,6 +11,7 @@ weights_file = THIS_FOLDER / "weights.h5"
 model.load_weights(weights_file)
 
 app = Flask(__name__)
+app.config["APPLICATION_ROOT"] = "/api/"
 
 @app.route('/api')
 def home():
