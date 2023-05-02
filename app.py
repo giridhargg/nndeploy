@@ -13,12 +13,12 @@ model.load_weights(weights_file)
 app = Flask(__name__)
 app.config["APPLICATION_ROOT"] = "/api/"
 
-@app.route('/api')
+@app.route('/')
 def home():
     return jsonify("hello world")
 #     return render_template("ui.html")
 
-@app.route('/api/predict', methods = ['POST'])
+@app.route('/predict', methods = ['POST'])
 def predict():
     input_data = [[float(i) for i in row] for row in request.json['input']]
     y_pred_val = model.predict(input_data)
