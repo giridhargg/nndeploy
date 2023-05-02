@@ -1,9 +1,7 @@
 Flask
 pandas
 numpy
-seaborn
 keras
-matplotlib
 tensorflow
 sklearn
 flask_cors
